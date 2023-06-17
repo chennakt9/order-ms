@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "./pkg/pb";
+
+service OrderService {
+  rpc HealthCheck(OrderSvcNoParam) returns (OrderSvcHealthCheckResponse) {}
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+}
+
+
+// Health
+message OrderSvcNoParam {
+
+}
+
+message OrderSvcHealthCheckResponse {
+  string message = 1;
+}
+
+// Create order
+message CreateOrderRequest {
+  int64 productId = 1;
+  int64 quantity = 2;
+  int64 userId = 3;
+}
+
+message CreateOrderResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 id = 3;
+}
